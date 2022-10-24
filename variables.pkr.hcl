@@ -21,5 +21,10 @@ variable "hostname" {
 
 variable "vram" {
   type = number
-  default = 8
+  default = 4
+}
+
+variable "memory" {
+  type = number
+  default = 4096
 }
