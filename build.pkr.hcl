@@ -17,7 +17,7 @@ source "virtualbox-iso" "debian11-x64" {
   }
   guest_os_type    = "Debian_64"
   iso_checksum     = "sha256:e307d0e583b4a8f7e5b436f8413d4707dd4242b70aea61eb08591dc0378522f3"
-  iso_url          = "http://127.0.0.1:1314/netinst.iso"
+  iso_url          = "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.5.0-amd64-netinst.iso"
   shutdown_command = "echo ${var.ssh_user} | sudo -S shutdown -P now"
   ssh_password     = "${var.ssh_pass}"
   ssh_wait_timeout = "20m"
