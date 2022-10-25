@@ -26,13 +26,18 @@ source "virtualbox-iso" "debian11-x64" {
   guest_additions_path = "/var/tmp/VBoxGuestAdditions_{{.Version}}.iso"
   vboxmanage       = [
     ["modifyvm", "{{ .Name }}", "--vram", "16"], 
-    ["modifyvm", "{{ .Name }}", "--memory", "${var.memory}"]
+    ["modifyvm", "{{ .Name }}", "--memory", "${var.memory}"],
+    ["modifyvm", "{{ .Name }}", "--nic1", "intnet"],
+    ["modifyvm", "{{ .Name }}", "--nic2", "nat"]
   ]
 }
 
 build {
   sources = ["source.virtualbox-iso.debian11-x64"]
   provisioner "shell" {
-    script = "install-elk.sh"
+    script           = "install-elk.sh"
+    environment_vars = [
+      "build_ip=${var.build_ip}"
+    ]
   }
 }
