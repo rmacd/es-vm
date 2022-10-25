@@ -1,11 +1,11 @@
 variable "ssh_user" {
   type = string
-  default = "vagrant"
+  default = "demo"
 }
 
 variable "ssh_pass" {
   type = string
-  default = "vagrant"
+  default = "12345"
 }
 
 variable "kblayout" {
@@ -15,7 +15,7 @@ variable "kblayout" {
 
 variable "hostname" {
   type = string
-  default = "packer-deb11-x64"
+  default = "elk-deb11-x64"
 }
 
 variable "memory" {

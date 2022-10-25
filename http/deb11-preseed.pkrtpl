@@ -70,3 +70,8 @@ popularity-contest popularity-contest/participate boolean false
 
 # disable automatic package updates
 d-i pkgsel/update-policy select none
+
+# don't require password on sudo
+d-i preseed/late_command string \
+    echo "${ssh_user} ALL=(ALL) NOPASSWD: ALL" > /target/etc/sudoers.d/${ssh_user} ; \
+    in-target chmod 440 /etc/sudoers.d/${ssh_user} ;

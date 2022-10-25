@@ -6,13 +6,14 @@ source "virtualbox-iso" "debian11-x64" {
     "auto-install/enable=true ",
     "debconf/priority=critical ",
     "debconf/frontend=noninteractive ",
-    "preseed/url=http://192.168.178.29:{{ .HTTPPort }}/preseed.cfg <wait>",
+    "preseed/url=http://${build_ip}:{{ .HTTPPort }}/preseed.cfg <wait>",
     " -- <wait>",
     "<enter><wait>"
   ]
-  disk_size        = 4096
+  disk_size        = 6144
   http_content     = {
     "/preseed.cfg" = templatefile("${path.root}/http/deb11-preseed.pkrtpl", var)
+    "/issue_net" = templatefile("${path.root}/http/issue_net.pkrtpl", var)
   }
   guest_os_type    = "Debian_64"
   iso_checksum     = "sha256:e307d0e583b4a8f7e5b436f8413d4707dd4242b70aea61eb08591dc0378522f3"
@@ -31,4 +32,7 @@ source "virtualbox-iso" "debian11-x64" {
 
 build {
   sources = ["source.virtualbox-iso.debian11-x64"]
+  provisioner "shell" {
+    script = "install-elk.sh"
+  }
 }
