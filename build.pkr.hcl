@@ -26,8 +26,10 @@ source "virtualbox-iso" "debian11-x64" {
   guest_additions_path = "/var/tmp/VBoxGuestAdditions_{{.Version}}.iso"
   vboxmanage       = [
     ["modifyvm", "{{ .Name }}", "--vram", "16"], 
-    ["modifyvm", "{{ .Name }}", "--memory", "${var.memory}"],
-    ["modifyvm", "{{ .Name }}", "--nic1", "intnet"],
+    ["modifyvm", "{{ .Name }}", "--memory", "${var.memory}"]
+  ]
+  vboxmanage_post  = [
+    ["modifyvm", "{{ .Name }}", "--nic1", "hostonly", "--hostonlyadapter1", "vboxnet0"],
     ["modifyvm", "{{ .Name }}", "--nic2", "nat"]
   ]
 }
