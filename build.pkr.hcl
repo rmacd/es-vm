@@ -6,7 +6,7 @@ source "virtualbox-iso" "debian11-x64" {
     "auto-install/enable=true ",
     "debconf/priority=critical ",
     "debconf/frontend=noninteractive ",
-    "preseed/url=http://${build_ip}:{{ .HTTPPort }}/preseed.cfg <wait>",
+    "preseed/url=http://${var.build_ip}:{{ .HTTPPort }}/preseed.cfg <wait>",
     " -- <wait>",
     "<enter><wait>"
   ]

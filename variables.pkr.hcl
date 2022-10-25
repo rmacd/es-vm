@@ -27,3 +27,7 @@ variable "locale" {
   type = string
   default = "en_GB"
 }
+
+variable "build_ip" {
+  type = string
+}
