@@ -1,17 +1,16 @@
-variable "ssh_name" {
+variable "ssh_user" {
   type = string
-  default = "packer"
+  default = "vagrant"
 }
 
 variable "ssh_pass" {
   type = string
-  default = "packer"
-  sensitive = true
+  default = "vagrant"
 }
 
 variable "kblayout" {
   type = string
-  default = "GB"
+  default = "gb"
 }
 
 variable "hostname" {
@@ -19,12 +18,12 @@ variable "hostname" {
   default = "packer-deb11-x64"
 }
 
-variable "vram" {
-  type = number
-  default = 4
-}
-
 variable "memory" {
   type = number
   default = 4096
+}
+
+variable "locale" {
+  type = string
+  default = "en_GB"
 }
